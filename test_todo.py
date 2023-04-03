@@ -8,16 +8,12 @@ def test_call_endpoint():
     response = requests.get(TEST_ENDPOINT)
     assert response.status_code == 200
 
-    data = response.json()
-    print(data)
-
 
 def test_create_task():
     payload = new_task_payload()
     create_task_response = create_task(payload)
     assert create_task_response.status_code == 200
     data = create_task_response.json()
-    print(data)
 
     task_id = data["task"]["task_id"]
     get_task_response = get_task(task_id)
@@ -70,7 +66,6 @@ def test_can_list_tasks():
     # Check that amount of tasks is right
     tasks = data["tasks"]
     assert len(tasks) == n
-    print(data)
 
 
 def test_can_delete_task():
@@ -112,8 +107,6 @@ def delete_task(task_id):
 def new_task_payload():
     user_id = f"test_user_{uuid.uuid4().hex}"
     content = f"test_content_{uuid.uuid4().hex}"
-
-    print(f"Creating task for {user_id} with content {content}")
 
     return {
         "user_id": user_id,
