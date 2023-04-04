@@ -1,0 +1,10 @@
+{
+  "task": {
+    "user_id": "string",
+    "content": "string",
+    "is_done": false,
+    "created_time": 1680621295,
+    "task_id": "task_a2d40c6b006d4d109198b11a66de7550",
+    "ttl": 1680707695
+  }
+}

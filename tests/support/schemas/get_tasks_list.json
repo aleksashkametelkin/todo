@@ -1,0 +1,99 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "array",
+    "items": [
+        {
+            "type": "object",
+            "properties": {
+                "is_done": {
+                    "type": "boolean"
+                },
+                "content": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                },
+                "task_id": {
+                    "type": "string"
+                },
+                "ttl": {
+                    "type": "integer"
+                },
+                "created_time": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "is_done",
+                "content",
+                "user_id",
+                "task_id",
+                "ttl",
+                "created_time"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "is_done": {
+                    "type": "boolean"
+                },
+                "content": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                },
+                "task_id": {
+                    "type": "string"
+                },
+                "ttl": {
+                    "type": "integer"
+                },
+                "created_time": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "is_done",
+                "content",
+                "user_id",
+                "task_id",
+                "ttl",
+                "created_time"
+            ]
+        },
+        {
+            "type": "object",
+            "properties": {
+                "is_done": {
+                    "type": "boolean"
+                },
+                "content": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                },
+                "task_id": {
+                    "type": "string"
+                },
+                "ttl": {
+                    "type": "integer"
+                },
+                "created_time": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "is_done",
+                "content",
+                "user_id",
+                "task_id",
+                "ttl",
+                "created_time"
+            ]
+        }
+    ]
+}
