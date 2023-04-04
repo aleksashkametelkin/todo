@@ -1,5 +1,8 @@
+import json
 import requests
 import uuid
+
+from tests.support.assertions import assert_valid_schema
 
 TEST_ENDPOINT = "http://todo.pixegami.io"
 
@@ -8,6 +11,9 @@ def test_call_endpoint():
     response = requests.get(TEST_ENDPOINT)
     assert response.status_code == 200
 
+    json_data = json.loads(response.content)
+    assert_valid_schema(json_data, 'call_endpoint.json')
+
 
 def test_create_task():
     payload = new_task_payload()
@@ -15,8 +21,14 @@ def test_create_task():
     assert create_task_response.status_code == 200
     data = create_task_response.json()
 
+    json_data = json.loads(create_task_response.content)
+    assert_valid_schema(json_data, 'create_task.json')
+
     task_id = data["task"]["task_id"]
     get_task_response = get_task(task_id)
+
+    json_data = json.loads(create_task_response.content)
+    assert_valid_schema(json_data, 'get_task.json')
 
     assert get_task_response.status_code == 200
     get_task_data = get_task_response.json()
@@ -31,6 +43,9 @@ def test_can_update_task():
     assert create_task_response.status_code == 200
     task_id = create_task_response.json()["task"]["task_id"]
 
+    json_data = json.loads(create_task_response.content)
+    assert_valid_schema(json_data, 'get_task.json')
+
     # update the task
     new_payload = {
         "user_id": payload["user_id"],
@@ -40,6 +55,9 @@ def test_can_update_task():
     }
     update_task_response = update_task(new_payload)
     assert update_task_response.status_code == 200
+
+    json_data = json.loads(create_task_response.content)
+    assert_valid_schema(json_data, 'get_task.json')
 
     # get and validate the changes
     get_task_response = get_task(task_id)
@@ -67,6 +85,8 @@ def test_can_list_tasks():
     tasks = data["tasks"]
     assert len(tasks) == n
 
+    assert_valid_schema(tasks, 'get_tasks_list.json')
+
 
 def test_can_delete_task():
     # Create a task
@@ -78,6 +98,9 @@ def test_can_delete_task():
     # Delete the task
     delete_task_response = delete_task(task_id)
     assert delete_task_response.status_code == 200
+
+    json_data = json.loads(delete_task_response.content)
+    assert_valid_schema(json_data, 'get_task.json')
 
     # Get the task, and check that it's not found
     get_task_response = get_task(task_id)
